@@ -1,43 +1,12 @@
+# Resona runtime dependencies.
+# Kept in sync with [project].dependencies in pyproject.toml.
+# Install with: python -m pip install -r requirements.txt
 
-# Telegram bot framework
-python-telegram-bot[all]
-
-# Configuration and validation
-pydantic>=2.0,<3.0
-pydantic-settings>=2.0,<3.0
-python-dotenv>=1.0,<2.0
-
-# MongoDB
-pymongo>=4.9,<5.0
-
-# HTTP clients
-aiohttp>=3.9,<4.0
-httpx>=0.27,<1.0
-requests>=2.31,<3.0
-
-# Genshin Impact
-genshin
-asyncache
-
-# Telegram user sessions
-telethon
-
-# Image processing and emojis
-Pillow>=10.0,<13.0
-emoji
-
-# Web server
-flask
-gunicorn
-
-# ZZZ and data processing
-typing_extensions
-cachetools
-numpy
-more-itertools
-beautifulsoup4
-lxml
-matplotlib
-
-# Additional utilities
-orjson
+python-telegram-bot[rate-limiter,http2,job-queue]>=22.8,<23
+pydantic>=2,<3
+pydantic-settings>=2,<3
+pymongo>=4.9,<5
+aiohttp>=3.9,<4
+cryptography>=43
+genshin>=1.7.31,<2
+cachetools>=5

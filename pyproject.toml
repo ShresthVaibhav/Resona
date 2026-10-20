@@ -1,0 +1,69 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "resona"
+version = "0.1.0"
+description = "A modular Telegram bot providing game utilities for HoYoLAB-based games."
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+authors = [{ name = "Vaibhav Shresth" }]
+keywords = ["telegram", "bot", "genshin", "honkai-star-rail", "zenless-zone-zero"]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Topic :: Communications :: Chat",
+]
+dependencies = [
+  "python-telegram-bot[rate-limiter,http2,job-queue]>=22.8,<23",
+  "pydantic>=2,<3",
+  "pydantic-settings>=2,<3",
+  "pymongo>=4.9,<5",
+  "aiohttp>=3.9,<4",
+  "cryptography>=43",
+  "genshin>=1.7.31,<2",
+  "cachetools>=5",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8",
+  "pytest-asyncio>=0.24",
+  "ruff>=0.6",
+  "mypy>=1.11",
+]
+
+[project.scripts]
+resona = "resona.bootstrap:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/resona"]
+
+[tool.ruff]
+line-length = 88
+target-version = "py311"
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "RUF"]
+
+[tool.ruff.lint.isort]
+known-first-party = ["resona"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
+pythonpath = ["src"]
+
+[tool.mypy]
+python_version = "3.11"
+files = ["src"]
+warn_unused_configs = true
+warn_redundant_casts = true
+no_implicit_optional = true
+check_untyped_defs = true
+ignore_missing_imports = true
